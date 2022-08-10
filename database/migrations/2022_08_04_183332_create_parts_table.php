@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('description');
-            $table->int('amount');
+            $table->integer('amount');
             $table->timestamps();
+            $table->string('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

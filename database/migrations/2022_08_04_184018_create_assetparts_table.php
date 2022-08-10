@@ -15,9 +15,13 @@ return new class extends Migration
     {
         Schema::create('assetparts', function (Blueprint $table) {
             $table->id();
+            $table->integer('asset_id');
             $table->foreign('asset_id')->references('id')->on('assets');
+            $table->integer('part_id');
             $table->foreign('part_id')->references('id')->on('parts');
             $table->timestamps();
+            $table->string('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

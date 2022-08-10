@@ -15,9 +15,13 @@ return new class extends Migration
     {
         Schema::create('purchaseorderparts', function (Blueprint $table) {
             $table->id();
+            $table->integer('purchaseorder_id');
             $table->foreign('purchaseorder_id')->references('id')->on('purchaseorder');
+            $table->integer('part_id');
             $table->foreign('part_id')->references('id')->on('parts');
             $table->timestamps();
+            $table->string('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('purchaseorder', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('provider_id');
             $table->foreign('provider_id')->references('id')->on('providers');
             $table->timestamp('purchase_date');
             $table->timestamps();
+            $table->string('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

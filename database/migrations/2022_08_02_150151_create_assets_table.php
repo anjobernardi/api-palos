@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->boolean('active');
             $table->timestamps();
+            $table->string('tenant_id')->unsigned()->nullable();
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
